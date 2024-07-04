@@ -1,3 +1,5 @@
+import { StyledButton } from './styles'
+
 export function PrimaryButton() {
-  return <button>botao</button>
+  return <StyledButton>BUTTON</StyledButton>
 }
