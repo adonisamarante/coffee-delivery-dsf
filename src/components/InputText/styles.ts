@@ -9,12 +9,19 @@ export const InputPlaceholder = styled.span<{ position: string }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: ${(props) => props.theme['base-label']};
   pointer-events: none;
   ${(props) => (props.position === 'start' ? 'left: 10px;' : 'right: 10px;')}
 `
 
 export const InputField = styled.input`
-  padding: 10px 40px; /* Adjust padding to accommodate the placeholders */
+  background-color: ${(props) => props.theme['base-input']};
+  color: ${(props) => props.theme['base-text']};
+  padding: 0.75rem; /* Adjust padding to accommodate the placeholders */
   box-sizing: border-box;
+  border-radius: 4px;
+
+  &:focus {
+    border: 2px solid ${(props) => props.theme['yellow-dark']};
+  }
 `
