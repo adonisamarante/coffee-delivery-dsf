@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface CardSelectButtonProps {
+interface OrderPayMethodBtnProps {
   isSelected: boolean
 }
 
-export const CardSelectButton = styled.button<CardSelectButtonProps>`
+export const OrderPayMethodButton = styled.button<OrderPayMethodBtnProps>`
   display: flex;
   align-items: center;
   gap: 0.75rem;

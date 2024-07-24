@@ -1,8 +1,8 @@
 import { CreditCard } from 'phosphor-react'
-import { CardSelectButton } from './styles'
+import { OrderPayMethodButton } from './styles'
 import { useState } from 'react'
 
-export function TotalOrderCard() {
+export function OrderPayMethodBtn() {
   const [isSelected, setIsSelected] = useState(false)
 
   function handleSelected() {
@@ -10,9 +10,9 @@ export function TotalOrderCard() {
   }
 
   return (
-    <CardSelectButton isSelected={isSelected} onClick={handleSelected}>
+    <OrderPayMethodButton isSelected={isSelected} onClick={handleSelected}>
       <CreditCard className="card-icon" />
       CARTÃO DE CRÉDITO
-    </CardSelectButton>
+    </OrderPayMethodButton>
   )
 }
