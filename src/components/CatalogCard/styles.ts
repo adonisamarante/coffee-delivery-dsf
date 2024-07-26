@@ -69,6 +69,7 @@ export const CardFooter = styled.div`
 
     :first-child {
       font-size: 12px;
+      padding-top: 0.2rem;
     }
 
     :last-child {
