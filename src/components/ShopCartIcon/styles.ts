@@ -26,6 +26,8 @@ export const CartAmountTooltip = styled.div`
   top: -0.625rem;
   right: -0.625rem;
 
+  justify-content: center;
+
   background: ${(props) => props.theme['yellow-dark']};
   color: ${(props) => props.theme.white};
 `
