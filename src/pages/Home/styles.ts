@@ -4,10 +4,14 @@ interface PerkIconProps {
   color?: string
 }
 
-export const TitleContainer = styled.div`
-  justify-content: space-between;
+export const Container = styled.div`
+  flex-direction: column;
 
   padding: 5.75rem 0;
+`
+
+export const TitleContainer = styled.div`
+  justify-content: space-between;
 `
 
 export const TitleTextContainer = styled.div`
@@ -61,4 +65,25 @@ export const PerkWrapper = styled.div<PerkIconProps>`
     font-weight: 400;
     line-height: 130%;
   }
+`
+
+export const CatalogContainer = styled.div`
+  flex-direction: column;
+  margin-top: 5.75rem;
+
+  > span {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 32px;
+    line-height: 130%;
+    font-weight: 800;
+
+    padding: 2rem 0;
+  }
+`
+
+export const CatalogGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 1.25rem;
+  grid-column-gap: 2rem;
 `
