@@ -23,11 +23,15 @@ export const CardContainer = styled.div`
   }
 `
 
+export const TagsWrapper = styled.div`
+  margin-top: 7rem;
+  gap: 0.25rem;
+`
+
 export const CoffeeTag = styled.div`
   background-color: ${(props) => props.theme['yellow-light']};
   border-radius: 100px;
   padding: 0.25rem 0.5rem;
-  margin-top: 7rem;
 
   span {
     color: ${(props) => props.theme['yellow-dark']};
