@@ -4,7 +4,9 @@ import { CartAmountTooltip, CartIcon } from './styles'
 export function ShopCartIcon() {
   return (
     <CartIcon>
-      <CartAmountTooltip>19</CartAmountTooltip>
+      <CartAmountTooltip>
+        <span>4</span>
+      </CartAmountTooltip>
       <ShoppingCartSimple size={22} weight="fill" className="cart-icon" />
     </CartIcon>
   )

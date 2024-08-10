@@ -27,7 +27,13 @@ export const CartAmountTooltip = styled.div`
   right: -0.625rem;
 
   justify-content: center;
+  align-items: center;
 
   background: ${(props) => props.theme['yellow-dark']};
-  color: ${(props) => props.theme.white};
+
+  span {
+    color: ${(props) => props.theme.white};
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
 `
