@@ -1,0 +1,4 @@
+export enum ActionTypes {
+  ADD_ITEM_TO_ORDER = 'ADD_ITEM_TO_ORDER',
+  REMOVE_ITEM_FROM_ORDER = 'REMOVE_ITEM_FROM_ORDER',
+}
