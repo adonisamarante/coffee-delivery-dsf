@@ -1,8 +1,10 @@
 import { createContext, ReactNode } from 'react'
+// import coffees from '../mocks/coffees'
+// import { IOrder } from '../infra/interfaces/order'
 import { ICoffee } from '../infra/interfaces/coffee'
 
 interface ICoffeeOrderContextType {
-  order: ICoffee[]
+  order: ICoffee
 }
 
 export const CoffeeOrderContext = createContext({} as ICoffeeOrderContextType)
@@ -14,16 +16,25 @@ interface ICoffeeOrderContextProviderProps {
 export function CoffeeOrderContextProvider({
   children,
 }: ICoffeeOrderContextProviderProps) {
-  const order: ICoffee[] = [
-    {
-      id: '20',
-      description: 'test',
-      image: 'test',
-      name: 'coffee test',
-      price: '10,00',
-      tags: ['test1', 'test2'],
-    },
-  ]
+  // const [orderState, dispatch] = useReducer({
+  //   coffees: [],
+  //   quantity: 0,
+  //   paymentMethod: '',
+  //   total: '',
+  //   address: '',
+  // })
+
+  // const order: IOrder = {}
+  // order.coffees.push(coffees)
+
+  const order: ICoffee = {
+    description: '',
+    id: '',
+    image: '',
+    name: '',
+    price: '',
+    tags: ['', ''],
+  }
 
   return (
     <CoffeeOrderContext.Provider value={{ order }}>
