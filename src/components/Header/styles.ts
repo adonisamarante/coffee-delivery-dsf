@@ -8,9 +8,11 @@ export const HeaderContainer = styled.div`
 
 export const ButtonsContainer = styled.div`
   gap: 0.75rem;
+  justify-content: end;
 `
 
 export const LocationButton = styled.div`
+  width: fit-content;
   background-color: ${(props) => props.theme['purple-light']};
   border-radius: 6px;
   padding: 0 0.5rem;
