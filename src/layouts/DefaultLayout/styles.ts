@@ -7,11 +7,13 @@ export const Container = styled.div`
 `
 
 export const LayoutWrapper = styled.div`
-  width: 90rem;
+  max-width: 90rem;
   height: 100vh;
-  padding: 0 10rem;
+`
 
-  background: ${(props) => props.theme['background-color']};
+export const Layout = styled.div`
+  flex: 1;
+  padding: 0 10rem;
 
   flex-direction: column;
 `
