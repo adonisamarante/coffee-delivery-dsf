@@ -12,11 +12,20 @@ export const Container = styled.div`
 
 export const TitleContainer = styled.div`
   justify-content: space-between;
+
+  @media screen and (max-width: 1200px) {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
 `
 
 export const TitleTextContainer = styled.div`
   flex-direction: column;
   gap: 4.125rem;
+
+  @media screen and (max-width: 1200px) {
+    justify-content: center;
+  }
 `
 
 export const TitleTextWrapper = styled.div`
@@ -36,12 +45,21 @@ export const TitleTextWrapper = styled.div`
     font-weight: 500;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media screen and (max-width: 1200px) {
+    text-align: center;
+  }
 `
 
 export const TitlePerksWrapper = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 1.25rem;
+
+  @media screen and (max-width: 950px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 export const PerkWrapper = styled.div<PerkIconProps>`
@@ -64,6 +82,10 @@ export const PerkWrapper = styled.div<PerkIconProps>`
     font-size: 1rem;
     font-weight: 400;
     line-height: 130%;
+  }
+
+  @media screen and (max-width: 950px) {
+    justify-content: center;
   }
 `
 
