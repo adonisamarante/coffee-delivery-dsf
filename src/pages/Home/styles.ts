@@ -105,7 +105,21 @@ export const CatalogContainer = styled.div`
 
 export const CatalogGrid = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 1.25rem;
   grid-column-gap: 2rem;
+
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  @media screen and (max-width: 950px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 560px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `

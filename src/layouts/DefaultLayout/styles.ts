@@ -16,4 +16,8 @@ export const Layout = styled.div`
   padding: 0 10rem;
 
   flex-direction: column;
+
+  @media screen and (max-width: 950px) {
+    padding: 0 2rem;
+  }
 `
