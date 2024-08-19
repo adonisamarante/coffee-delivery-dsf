@@ -4,5 +4,6 @@ export interface ICoffee {
   tags: string[]
   name: string
   description: string
+  quantity: number
   price: string
 }

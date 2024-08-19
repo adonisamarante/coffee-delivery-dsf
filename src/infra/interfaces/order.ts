@@ -12,7 +12,6 @@ export interface IAddress {
 
 export interface IOrder {
   coffees: ICoffee[]
-  quantity: number
   paymentMethod: string
   total: string
   address: IAddress
