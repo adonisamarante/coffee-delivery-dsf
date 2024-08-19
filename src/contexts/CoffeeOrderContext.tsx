@@ -1,10 +1,12 @@
-import { createContext, ReactNode } from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
 // import coffees from '../mocks/coffees'
-// import { IOrder } from '../infra/interfaces/order'
+import { orderReducer } from '../reducers/order/reducer'
 import { ICoffee } from '../infra/interfaces/coffee'
+import { addCoffeeToOrderAction } from '../reducers/order/actions'
 
 interface ICoffeeOrderContextType {
-  order: ICoffee
+  coffees: ICoffee[]
+  addCoffeeToOrder: (coffee: ICoffee) => void
 }
 
 export const CoffeeOrderContext = createContext({} as ICoffeeOrderContextType)
@@ -16,28 +18,34 @@ interface ICoffeeOrderContextProviderProps {
 export function CoffeeOrderContextProvider({
   children,
 }: ICoffeeOrderContextProviderProps) {
-  // const [orderState, dispatch] = useReducer({
-  //   coffees: [],
-  //   quantity: 0,
-  //   paymentMethod: '',
-  //   total: '',
-  //   address: '',
-  // })
+  const [orderState, dispatch] = useReducer(
+    orderReducer,
+    {
+      coffees: [],
+      paymentMethod: '',
+      total: '',
+      address: {
+        zip: '',
+        streetName: '',
+        number: 0,
+        neighborhood: '',
+        city: '',
+        stateUf: '',
+      },
+    },
+    (initialState) => {
+      return initialState
+    },
+  )
 
-  // const order: IOrder = {}
-  // order.coffees.push(coffees)
+  const { coffees } = orderState
 
-  const order: ICoffee = {
-    description: '',
-    id: '',
-    image: '',
-    name: '',
-    price: '',
-    tags: ['', ''],
+  function addCoffeeToOrder(coffee: ICoffee) {
+    dispatch(addCoffeeToOrderAction(coffee))
   }
 
   return (
-    <CoffeeOrderContext.Provider value={{ order }}>
+    <CoffeeOrderContext.Provider value={{ coffees, addCoffeeToOrder }}>
       {children}
     </CoffeeOrderContext.Provider>
   )
