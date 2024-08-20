@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useReducer } from 'react'
-// import coffees from '../mocks/coffees'
 import { orderReducer } from '../reducers/order/reducer'
 import { ICoffee } from '../infra/interfaces/coffee'
 import { addCoffeeToOrderAction } from '../reducers/order/actions'
@@ -39,6 +38,8 @@ export function CoffeeOrderContextProvider({
   )
 
   const { coffees } = orderState
+
+  console.log('order: ', orderState)
 
   function addCoffeeToOrder(coffee: ICoffee) {
     dispatch(addCoffeeToOrderAction(coffee))

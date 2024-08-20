@@ -8,12 +8,20 @@ import {
   CoffeeTag,
   TagsWrapper,
 } from './styles'
+import { useContext } from 'react'
+import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 
 interface CatalogCardProps {
   coffee: ICoffee
 }
 
 export function CatalogCard({ coffee }: CatalogCardProps) {
+  const { addCoffeeToOrder } = useContext(CoffeeOrderContext)
+
+  function addItem() {
+    addCoffeeToOrder(coffee)
+  }
+
   return (
     <CardContainer>
       <img src={coffee.image} alt={coffee.name} />
@@ -41,7 +49,7 @@ export function CatalogCard({ coffee }: CatalogCardProps) {
 
         <div>
           <InputNumber />
-          <AddToCartButton />
+          <AddToCartButton onClick={addItem} />
         </div>
       </CardFooter>
     </CardContainer>
