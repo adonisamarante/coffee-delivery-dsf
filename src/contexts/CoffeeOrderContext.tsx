@@ -39,8 +39,6 @@ export function CoffeeOrderContextProvider({
 
   const { coffees } = orderState
 
-  console.log('order: ', orderState)
-
   function addCoffeeToOrder(coffee: ICoffee) {
     dispatch(addCoffeeToOrderAction(coffee))
   }
