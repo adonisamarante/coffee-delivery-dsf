@@ -1,18 +1,17 @@
 import { Minus, Plus } from 'phosphor-react'
 import { InputNumberContainer, PlusMinusButton } from './styles'
-import { useState } from 'react'
 
-export function InputNumber() {
-  const [quantity, setQuantity] = useState(0)
+interface InputNumberProps {
+  quantity: number
+  addQuantity: () => void
+  decreaseQuantity: () => void
+}
 
-  function addQuantity() {
-    setQuantity((state) => state + 1)
-  }
-
-  function decreaseQuantity() {
-    setQuantity((state) => state - 1)
-  }
-
+export function InputNumber({
+  quantity,
+  addQuantity,
+  decreaseQuantity,
+}: InputNumberProps) {
   return (
     <InputNumberContainer>
       <PlusMinusButton disabled={quantity <= 0} onClick={decreaseQuantity}>

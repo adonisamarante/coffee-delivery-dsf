@@ -8,7 +8,7 @@ import {
   CoffeeTag,
   TagsWrapper,
 } from './styles'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 
 interface CatalogCardProps {
@@ -16,10 +16,29 @@ interface CatalogCardProps {
 }
 
 export function CatalogCard({ coffee }: CatalogCardProps) {
+  const [quantity, setQuantity] = useState(0)
   const { addCoffeeToOrder } = useContext(CoffeeOrderContext)
 
-  function addItem() {
-    addCoffeeToOrder(coffee)
+  function addQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function decreaseQuantity() {
+    setQuantity((state) => state - 1)
+  }
+
+  function addItemToOrder() {
+    const newCoffee = {
+      ...coffee,
+      quantity,
+    }
+
+    if (quantity === 0) {
+      return
+    }
+
+    addCoffeeToOrder(newCoffee)
+    setQuantity(0)
   }
 
   return (
@@ -48,8 +67,12 @@ export function CatalogCard({ coffee }: CatalogCardProps) {
         </div>
 
         <div>
-          <InputNumber />
-          <AddToCartButton onClick={addItem} />
+          <InputNumber
+            quantity={quantity}
+            addQuantity={addQuantity}
+            decreaseQuantity={decreaseQuantity}
+          />
+          <AddToCartButton onClick={addItemToOrder} />
         </div>
       </CardFooter>
     </CardContainer>
