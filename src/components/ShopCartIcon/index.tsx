@@ -1,13 +1,15 @@
 import { ShoppingCartSimple } from 'phosphor-react'
 import { CartAmountTooltip, CartIcon } from './styles'
-import { useContext } from 'react'
+import { ButtonHTMLAttributes, useContext } from 'react'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 
-export function ShopCartIcon() {
+interface IShopCartIconProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function ShopCartIcon(props: IShopCartIconProps) {
   const { coffees } = useContext(CoffeeOrderContext)
 
   return (
-    <CartIcon disabled={!coffees.length}>
+    <CartIcon {...props} disabled={!coffees.length}>
       {coffees.length > 0 && (
         <CartAmountTooltip>
           <span>{coffees.length}</span>

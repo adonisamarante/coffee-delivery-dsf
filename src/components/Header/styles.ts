@@ -4,6 +4,12 @@ export const HeaderContainer = styled.div`
   padding: 2rem 0;
 
   justify-content: space-between;
+
+  img {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `
 
 export const ButtonsContainer = styled.div`

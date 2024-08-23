@@ -32,9 +32,9 @@ export function CoffeeOrderContextProvider({
         stateUf: '',
       },
     },
-    (initialState) => {
-      return initialState
-    },
+    // (initialState) => {
+    //   return initialState
+    // },
   )
 
   const { coffees } = orderState
