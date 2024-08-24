@@ -5,14 +5,14 @@ import { ButtonsContainer, HeaderContainer, LocationButton } from './styles'
 import { useNavigate } from 'react-router-dom'
 
 export function Header() {
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   function handleNavigateHome() {
-    navigation('/')
+    navigate('/')
   }
 
   function handleNavigateCheckout() {
-    navigation('/Checkout')
+    navigate('/Checkout')
   }
 
   return (
