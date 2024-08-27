@@ -23,7 +23,17 @@ export const PaymentWrapper = styled(BaseWrapper)`
   width: 100%;
 `
 
+export const TotalOrderContainer = styled.div`
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
 export const TotalOrderWrapper = styled(BaseWrapper)`
   width: 28rem;
   height: fit-content;
+  border-radius: 6px 44px 6px 44px;
+  padding: 2.5rem;
+
+  flex-direction: column;
 `
