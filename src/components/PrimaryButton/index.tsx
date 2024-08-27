@@ -1,5 +1,10 @@
+import { ButtonHTMLAttributes } from 'react'
 import { StyledButton } from './styles'
 
-export function PrimaryButton() {
-  return <StyledButton>BUTTON</StyledButton>
+interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  text?: string
+}
+
+export function PrimaryButton(props: PrimaryButtonProps) {
+  return <StyledButton {...props}>{props.text || 'Button'}</StyledButton>
 }
