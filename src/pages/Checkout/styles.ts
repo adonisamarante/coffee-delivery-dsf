@@ -37,3 +37,25 @@ export const TotalOrderWrapper = styled(BaseWrapper)`
 
   flex-direction: column;
 `
+
+export const Separator = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${(props) => props.theme['base-button']};
+  margin: 1.5rem 0;
+`
+
+export const ValuesAmountWrapper = styled.div`
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-bottom: 1.5rem;
+
+  > div {
+    justify-content: space-between;
+  }
+
+  .total-text {
+    margin-bottom: 10px;
+  }
+`
