@@ -4,23 +4,27 @@ import {
   ItemInfoSection,
   ItemInfoSectionButtons,
 } from './styles'
-import americano from '../../assets/coffeeTypes/americano.png'
 import { InputNumber } from '../InputNumber'
 import { ButtonRemove } from '../ButtonRemove'
+import { ICoffee } from '../../infra/interfaces/coffee'
 
-export function ShopCartCard() {
+interface IShopCartCardProps {
+  coffee: ICoffee
+}
+
+export function ShopCartCard({ coffee }: IShopCartCardProps) {
   return (
     <CardContainer>
-      <img src={americano} alt="Café Americano" />
+      <img src={coffee.image} alt="Café Americano" />
 
       <ItemInfo>
         <ItemInfoSection>
-          <span>Americano</span>
-          <span>R$ 9,90</span>
+          <span>{coffee.name}</span>
+          <span>R$ {coffee.quantity * parseFloat(coffee.price)}</span>
         </ItemInfoSection>
 
         <ItemInfoSectionButtons>
-          <InputNumber />
+          <InputNumber quantity={coffee.quantity} />
           <ButtonRemove />
         </ItemInfoSectionButtons>
       </ItemInfo>
