@@ -2,7 +2,11 @@ import { useContext } from 'react'
 import { PrimaryButton, ShopCartCard } from '../../components'
 import {
   AddressWrapper,
+  CoffeeList,
+  CoffeeListWrapper,
   Container,
+  GradBottom,
+  GradTop,
   PaymentWrapper,
   Separator,
   SignUpFormContainer,
@@ -30,21 +34,35 @@ export function Checkout() {
       <TotalOrderContainer>
         <h3>Cafés selecionados</h3>
         <TotalOrderWrapper>
-          {coffees &&
-            coffees.map((coffee) => {
-              const coffeeIndex = coffees.indexOf(coffee)
+          <CoffeeListWrapper>
+            <CoffeeList>
+              {coffees.length > 0 ? (
+                coffees.map((coffee) => {
+                  const coffeeIndex = coffees.indexOf(coffee)
 
-              if (coffeeIndex !== coffees.length - 1) {
-                return (
-                  <>
-                    <ShopCartCard key={coffee.id} />
-                    <Separator />
-                  </>
-                )
-              } else {
-                return <ShopCartCard key={coffee.id} />
-              }
-            })}
+                  if (coffeeIndex !== coffees.length - 1) {
+                    return (
+                      <>
+                        <ShopCartCard key={coffee.id} coffee={coffee} />
+                        <Separator />
+                      </>
+                    )
+                  } else {
+                    return <ShopCartCard key={coffee.id} coffee={coffee} />
+                  }
+                })
+              ) : (
+                <p>nenhum item</p>
+              )}
+            </CoffeeList>
+
+            {coffees.length > 0 && (
+              <>
+                <GradTop />
+                <GradBottom />
+              </>
+            )}
+          </CoffeeListWrapper>
 
           <Separator />
 
