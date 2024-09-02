@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { PrimaryButton, ShopCartCard } from '../../components'
 import {
+  AddressTitle,
   AddressWrapper,
   CoffeeList,
   CoffeeListWrapper,
@@ -15,15 +16,25 @@ import {
   ValuesAmountWrapper,
 } from './styles'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
+import { MapPinLine } from 'phosphor-react'
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
 
   return (
     <Container>
       <SignUpFormContainer>
-        <h3>Complete seu pedido</h3>
+        <h2>Complete seu pedido</h2>
         <AddressWrapper>
-          <p>address</p>
+          <AddressTitle>
+            <div>
+              <MapPinLine size={22} />
+              <p>Endereço de Entrega</p>
+            </div>
+            <p>Informe o endereço onde deseja receber seu pedido</p>
+          </AddressTitle>
+          <div>
+            <p>Address</p>
+          </div>
         </AddressWrapper>
 
         <PaymentWrapper>
@@ -32,7 +43,7 @@ export function Checkout() {
       </SignUpFormContainer>
 
       <TotalOrderContainer>
-        <h3>Cafés selecionados</h3>
+        <h2>Cafés selecionados</h2>
         <TotalOrderWrapper>
           <CoffeeListWrapper>
             <CoffeeList>

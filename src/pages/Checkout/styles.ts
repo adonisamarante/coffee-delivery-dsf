@@ -7,6 +7,14 @@ const BaseWrapper = styled.div`
 export const Container = styled.div`
   gap: 2rem;
   padding: 2.5rem 0;
+
+  h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.125rem;
+    line-height: 130%;
+    font-weight: 700;
+    color: ${(props) => props.theme['base-subtitle']};
+  }
 `
 
 export const SignUpFormContainer = styled.div`
@@ -17,10 +25,46 @@ export const SignUpFormContainer = styled.div`
 
 export const AddressWrapper = styled(BaseWrapper)`
   width: 100%;
+  padding: 2.5rem;
+  border-radius: 6px;
+
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const AddressTitle = styled.div`
+  flex-direction: column;
+  gap: 0.125rem;
+
+  > div {
+    align-items: center;
+    gap: 0.5rem;
+
+    > :first-child {
+      color: ${(props) => props.theme['yellow-dark']};
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 130%;
+      font-weight: 400;
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+  }
+
+  > p {
+    margin-left: 1.875rem;
+
+    font-size: 0.875rem;
+    line-height: 130%;
+    font-weight: 400;
+    color: ${(props) => props.theme['base-text']};
+  }
 `
 
 export const PaymentWrapper = styled(BaseWrapper)`
   width: 100%;
+  border-radius: 6px;
 `
 
 export const TotalOrderContainer = styled.div`
