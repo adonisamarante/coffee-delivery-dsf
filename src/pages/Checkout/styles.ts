@@ -62,6 +62,37 @@ export const AddressTitle = styled.div`
   }
 `
 
+export const AddressInfo = styled.div`
+  flex-direction: column;
+  gap: 1rem;
+`
+
+export const FirstLine = styled.div`
+  max-width: 12.5rem;
+`
+
+export const SecondLine = styled.div``
+
+export const ThirdLine = styled.div`
+  gap: 0.75rem;
+
+  > :first-child {
+    max-width: 12.5rem;
+  }
+`
+
+export const FourthLine = styled.div`
+  gap: 0.75rem;
+
+  > :first-child {
+    max-width: 12.5rem;
+  }
+
+  > :last-child {
+    max-width: 3.75rem;
+  }
+`
+
 export const PaymentWrapper = styled(BaseWrapper)`
   width: 100%;
   border-radius: 6px;

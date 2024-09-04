@@ -1,22 +1,28 @@
 import { useContext } from 'react'
-import { PrimaryButton, ShopCartCard } from '../../components'
+import { InputText, PrimaryButton, ShopCartCard } from '../../components'
 import {
+  AddressInfo,
   AddressTitle,
   AddressWrapper,
   CoffeeList,
   CoffeeListWrapper,
   Container,
+  FirstLine,
+  FourthLine,
   GradBottom,
   GradTop,
   PaymentWrapper,
+  SecondLine,
   Separator,
   SignUpFormContainer,
+  ThirdLine,
   TotalOrderContainer,
   TotalOrderWrapper,
   ValuesAmountWrapper,
 } from './styles'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 import { MapPinLine } from 'phosphor-react'
+
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
 
@@ -32,9 +38,23 @@ export function Checkout() {
             </div>
             <p>Informe o endereço onde deseja receber seu pedido</p>
           </AddressTitle>
-          <div>
-            <p>Address</p>
-          </div>
+          <AddressInfo>
+            <FirstLine>
+              <InputText placeholder="CEP" />
+            </FirstLine>
+            <SecondLine>
+              <InputText placeholder="Rua" />
+            </SecondLine>
+            <ThirdLine>
+              <InputText placeholder="Número" />
+              <InputText placeholder="Complemento" isOptional />
+            </ThirdLine>
+            <FourthLine>
+              <InputText placeholder="Bairro" />
+              <InputText placeholder="Cidade" />
+              <InputText placeholder="UF" />
+            </FourthLine>
+          </AddressInfo>
         </AddressWrapper>
 
         <PaymentWrapper>
