@@ -24,7 +24,6 @@ export const SignUpFormContainer = styled.div`
 `
 
 export const AddressWrapper = styled(BaseWrapper)`
-  width: 100%;
   padding: 2.5rem;
   border-radius: 6px;
 
@@ -94,8 +93,41 @@ export const FourthLine = styled.div`
 `
 
 export const PaymentWrapper = styled(BaseWrapper)`
-  width: 100%;
   border-radius: 6px;
+  padding: 2.5rem;
+
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const PaymentTitle = styled.div`
+  flex-direction: column;
+  gap: 0.125rem;
+
+  > div {
+    align-items: center;
+    gap: 0.5rem;
+
+    > :first-child {
+      color: ${(props) => props.theme.purple};
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 130%;
+      font-weight: 400;
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+  }
+
+  > p {
+    margin-left: 1.875rem;
+
+    font-size: 0.875rem;
+    line-height: 130%;
+    font-weight: 400;
+    color: ${(props) => props.theme['base-text']};
+  }
 `
 
 export const TotalOrderContainer = styled.div`

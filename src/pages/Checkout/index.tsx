@@ -11,6 +11,7 @@ import {
   FourthLine,
   GradBottom,
   GradTop,
+  PaymentTitle,
   PaymentWrapper,
   SecondLine,
   Separator,
@@ -21,7 +22,7 @@ import {
   ValuesAmountWrapper,
 } from './styles'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
-import { MapPinLine } from 'phosphor-react'
+import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
@@ -58,6 +59,16 @@ export function Checkout() {
         </AddressWrapper>
 
         <PaymentWrapper>
+          <PaymentTitle>
+            <div>
+              <CurrencyDollar size={22} />
+              <p>Pagamento</p>
+            </div>
+            <p>
+              O pagamento é feito na entrega. Escolha a forma que deseja pagar
+            </p>
+          </PaymentTitle>
+
           <p>payment</p>
         </PaymentWrapper>
       </SignUpFormContainer>
