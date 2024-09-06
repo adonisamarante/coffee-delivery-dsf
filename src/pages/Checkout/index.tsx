@@ -1,5 +1,12 @@
-import { useContext } from 'react'
-import { InputText, PrimaryButton, ShopCartCard } from '../../components'
+import { useContext, useState } from 'react'
+import {
+  InputText,
+  OrderPayMethodBtn,
+  PaymentMethod,
+  PaymentMethods,
+  PrimaryButton,
+  ShopCartCard,
+} from '../../components'
 import {
   AddressInfo,
   AddressTitle,
@@ -11,6 +18,7 @@ import {
   FourthLine,
   GradBottom,
   GradTop,
+  PaymentInfoBtns,
   PaymentTitle,
   PaymentWrapper,
   SecondLine,
@@ -27,6 +35,12 @@ import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
 
+  const [selectedPayment, setSelectedPayment] = useState('')
+
+  function handleSelectedPayment(paymentMethod: string) {
+    setSelectedPayment(paymentMethod)
+  }
+
   return (
     <Container>
       <SignUpFormContainer>
@@ -39,6 +53,7 @@ export function Checkout() {
             </div>
             <p>Informe o endereço onde deseja receber seu pedido</p>
           </AddressTitle>
+
           <AddressInfo>
             <FirstLine>
               <InputText placeholder="CEP" />
@@ -69,7 +84,16 @@ export function Checkout() {
             </p>
           </PaymentTitle>
 
-          <p>payment</p>
+          <PaymentInfoBtns>
+            {Object.keys(PaymentMethods).map((method) => (
+              <OrderPayMethodBtn
+                key={method}
+                method={method as PaymentMethod}
+                onClick={() => handleSelectedPayment(method)}
+                isSelected={selectedPayment === method}
+              />
+            ))}
+          </PaymentInfoBtns>
         </PaymentWrapper>
       </SignUpFormContainer>
 

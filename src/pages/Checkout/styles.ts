@@ -130,6 +130,10 @@ export const PaymentTitle = styled.div`
   }
 `
 
+export const PaymentInfoBtns = styled.div`
+  gap: 0.75rem;
+`
+
 export const TotalOrderContainer = styled.div`
   width: 28rem;
 
