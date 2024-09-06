@@ -1,18 +1,46 @@
-import { CreditCard } from 'phosphor-react'
+import { CreditCard, Bank, Money } from 'phosphor-react'
 import { OrderPayMethodButton } from './styles'
-import { useState } from 'react'
+import { ButtonHTMLAttributes } from 'react'
 
-export function OrderPayMethodBtn() {
-  const [isSelected, setIsSelected] = useState(false)
+interface PaymentMethodDetails {
+  icon: JSX.Element
+  label: string
+}
 
-  function handleSelected() {
-    setIsSelected((state) => !state)
-  }
+export const PaymentMethods = {
+  CreditCard: {
+    icon: <CreditCard className="button-icon" />,
+    label: 'CARTÃO DE CRÉDITO',
+  },
+  DebitCard: {
+    icon: <Bank className="button-icon" />,
+    label: 'CARTÃO DE DÉBITO',
+  },
+  Cash: {
+    icon: <Money className="button-icon" />,
+    label: 'DINHEIRO',
+  },
+}
+
+export type PaymentMethod = keyof typeof PaymentMethods
+
+interface IOrderPayMethodBtnProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  method: PaymentMethod
+  isSelected?: boolean
+}
+
+export function OrderPayMethodBtn({
+  method = 'CreditCard',
+  isSelected = false,
+  ...props
+}: IOrderPayMethodBtnProps) {
+  const methodDetails: PaymentMethodDetails = PaymentMethods[method]
 
   return (
-    <OrderPayMethodButton isSelected={isSelected} onClick={handleSelected}>
-      <CreditCard className="card-icon" />
-      CARTÃO DE CRÉDITO
+    <OrderPayMethodButton {...props} isSelected={isSelected}>
+      {methodDetails.icon}
+      {methodDetails.label}
     </OrderPayMethodButton>
   )
 }

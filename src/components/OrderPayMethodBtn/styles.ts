@@ -9,6 +9,8 @@ export const OrderPayMethodButton = styled.button<OrderPayMethodBtnProps>`
   align-items: center;
   gap: 0.75rem;
 
+  flex: 1;
+
   padding: ${(props) => (props.isSelected ? 'calc(1rem - 2px)' : '1rem')};
   border: ${(props) =>
     props.isSelected ? `solid 2px ${props.theme.purple}` : 'none'};
@@ -18,9 +20,12 @@ export const OrderPayMethodButton = styled.button<OrderPayMethodBtnProps>`
     props.isSelected
       ? props.theme['purple-light']
       : props.theme['base-button']};
-  color: ${(props) => props.theme['base-text']};
 
-  .card-icon {
+  color: ${(props) => props.theme['base-text']};
+  font-size: 0.75rem;
+  line-height: 160%;
+
+  .button-icon {
     color: ${(props) => props.theme.purple};
   }
 
