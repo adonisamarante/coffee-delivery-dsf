@@ -1,9 +1,12 @@
 import { Trash } from 'phosphor-react'
 import { StyledButtonRemove } from './styles'
+import { ButtonHTMLAttributes } from 'react'
 
-export function ButtonRemove() {
+interface IButtonRemoveProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function ButtonRemove(props: IButtonRemoveProps) {
   return (
-    <StyledButtonRemove>
+    <StyledButtonRemove {...props}>
       <Trash className="trashIcon" size={14} />
       REMOVER
     </StyledButtonRemove>
