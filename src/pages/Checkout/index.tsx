@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   InputText,
   OrderPayMethodBtn,
@@ -31,15 +31,35 @@ import {
 } from './styles'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { NumericFormat } from 'react-number-format'
 
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
 
   const [selectedPayment, setSelectedPayment] = useState('')
+  const [totalItemsPrice, setTotalItemsPrice] = useState(0)
+  const [totalOrderPrice, setTotalOrderPrice] = useState(0)
+
+  const taxaEntrega = 3.5
 
   function handleSelectedPayment(paymentMethod: string) {
     setSelectedPayment(paymentMethod)
   }
+
+  useEffect(() => {
+    if (coffees.length) {
+      const calculatedTotalItemsPrice = 0
+
+      const totalItemsPriceSum = coffees.reduce(
+        (accumulator, currentValue) =>
+          accumulator + currentValue.quantity * parseFloat(currentValue.price),
+        calculatedTotalItemsPrice,
+      )
+
+      setTotalItemsPrice(totalItemsPriceSum)
+      setTotalOrderPrice(totalItemsPriceSum + taxaEntrega)
+    }
+  }, [coffees])
 
   return (
     <Container>
@@ -135,15 +155,39 @@ export function Checkout() {
           <ValuesAmountWrapper>
             <div>
               <p>Total de itens</p>
-              <p>R$ 29,00</p>
+              <p>
+                <NumericFormat
+                  value={totalItemsPrice.toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix={'R$ '}
+                />
+              </p>
             </div>
             <div>
               <p>Entrega</p>
-              <p>R$ 3,50</p>
+              <p>
+                <NumericFormat
+                  value={taxaEntrega.toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix={'R$ '}
+                />
+              </p>
             </div>
             <div className="total-text">
               <p>Total</p>
-              <p>R$ 33,20</p>
+              <p>
+                <NumericFormat
+                  value={totalOrderPrice.toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix={'R$ '}
+                />
+              </p>
             </div>
           </ValuesAmountWrapper>
           <PrimaryButton text="CONFIRMAR PEDIDO" />
