@@ -8,13 +8,32 @@ import {
   ItemInfoSection,
   ItemInfoSectionButtons,
 } from './styles'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 
 interface IShopCartCardProps {
   coffee: ICoffee
 }
 
 export function ShopCartCard({ coffee }: IShopCartCardProps) {
-  const totalPrice = coffee.quantity * parseFloat(coffee.price)
+  const { updateCoffeeOrderQuantity } = useContext(CoffeeOrderContext)
+  const [quantity, setQuantity] = useState(coffee.quantity)
+  const totalPrice = quantity * parseFloat(coffee.price)
+
+  function addQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function decreaseQuantity() {
+    if (quantity >= 2) {
+      setQuantity((state) => state - 1)
+    }
+  }
+
+  useEffect(() => {
+    updateCoffeeOrderQuantity(coffee, quantity)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantity])
 
   return (
     <CardContainer>
@@ -35,7 +54,11 @@ export function ShopCartCard({ coffee }: IShopCartCardProps) {
         </ItemInfoSection>
 
         <ItemInfoSectionButtons>
-          <InputNumber quantity={coffee.quantity} />
+          <InputNumber
+            quantity={quantity}
+            addQuantity={addQuantity}
+            decreaseQuantity={decreaseQuantity}
+          />
           <ButtonRemove />
         </ItemInfoSectionButtons>
       </ItemInfo>
