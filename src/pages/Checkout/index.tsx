@@ -58,6 +58,9 @@ export function Checkout() {
 
       setTotalItemsPrice(totalItemsPriceSum)
       setTotalOrderPrice(totalItemsPriceSum + taxaEntrega)
+    } else {
+      setTotalItemsPrice(0)
+      setTotalOrderPrice(0)
     }
   }, [coffees])
 
