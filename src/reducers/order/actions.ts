@@ -13,8 +13,11 @@ export function addCoffeeToOrderAction(coffee: ICoffee) {
   }
 }
 
-export function removeCoffeeFromOrderAction(coffeeId: string) {
-  console.log(coffeeId)
+export function removeCoffeeFromOrderAction(coffee: ICoffee) {
+  return {
+    type: ActionTypes.REMOVE_COFFEE_FROM_ORDER,
+    payload: { coffee },
+  }
 }
 
 export function updateCoffeeQuantityAction(coffee: ICoffee, quantity: number) {

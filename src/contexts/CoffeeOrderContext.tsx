@@ -4,12 +4,14 @@ import { ICoffee } from '../infra/interfaces/coffee'
 import {
   addCoffeeToOrderAction,
   updateCoffeeQuantityAction,
+  removeCoffeeFromOrderAction,
 } from '../reducers/order/actions'
 
 interface ICoffeeOrderContextType {
   coffees: ICoffee[]
   addCoffeeToOrder: (coffee: ICoffee) => void
   updateCoffeeOrderQuantity: (coffee: ICoffee, quantity: number) => void
+  removeCoffeeFromOrder: (coffee: ICoffee) => void
 }
 
 export const CoffeeOrderContext = createContext({} as ICoffeeOrderContextType)
@@ -51,9 +53,18 @@ export function CoffeeOrderContextProvider({
     dispatch(updateCoffeeQuantityAction(coffee, quantity))
   }
 
+  function removeCoffeeFromOrder(coffee: ICoffee) {
+    dispatch(removeCoffeeFromOrderAction(coffee))
+  }
+
   return (
     <CoffeeOrderContext.Provider
-      value={{ coffees, addCoffeeToOrder, updateCoffeeOrderQuantity }}
+      value={{
+        coffees,
+        addCoffeeToOrder,
+        updateCoffeeOrderQuantity,
+        removeCoffeeFromOrder,
+      }}
     >
       {children}
     </CoffeeOrderContext.Provider>

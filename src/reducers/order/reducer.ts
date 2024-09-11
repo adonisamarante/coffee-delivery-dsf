@@ -28,7 +28,15 @@ export function orderReducer(state: IOrder, action: any) {
       })
 
     case ActionTypes.REMOVE_COFFEE_FROM_ORDER:
-      return state
+      return produce(state, (draft) => {
+        const payloadCoffee = action.payload.coffee
+
+        const existIndex = verifyExistIndex(draft.coffees, payloadCoffee)
+
+        if (existIndex >= 0) {
+          draft.coffees.splice(existIndex, 1)
+        }
+      })
 
     case ActionTypes.UPDATE_COFFEE_ORDER_QUANTITY:
       return produce(state, (draft) => {

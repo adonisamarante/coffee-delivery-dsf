@@ -16,18 +16,23 @@ interface IShopCartCardProps {
 }
 
 export function ShopCartCard({ coffee }: IShopCartCardProps) {
-  const { updateCoffeeOrderQuantity } = useContext(CoffeeOrderContext)
+  const { updateCoffeeOrderQuantity, removeCoffeeFromOrder } =
+    useContext(CoffeeOrderContext)
   const [quantity, setQuantity] = useState(coffee.quantity)
   const totalPrice = quantity * parseFloat(coffee.price)
 
-  function addQuantity() {
+  function handleAddQuantity() {
     setQuantity((state) => state + 1)
   }
 
-  function decreaseQuantity() {
+  function handleDecreaseQuantity() {
     if (quantity >= 2) {
       setQuantity((state) => state - 1)
     }
+  }
+
+  function handleRemoveCoffeeFromOrder() {
+    removeCoffeeFromOrder(coffee)
   }
 
   useEffect(() => {
@@ -56,10 +61,10 @@ export function ShopCartCard({ coffee }: IShopCartCardProps) {
         <ItemInfoSectionButtons>
           <InputNumber
             quantity={quantity}
-            addQuantity={addQuantity}
-            decreaseQuantity={decreaseQuantity}
+            addQuantity={handleAddQuantity}
+            decreaseQuantity={handleDecreaseQuantity}
           />
-          <ButtonRemove />
+          <ButtonRemove onClick={handleRemoveCoffeeFromOrder} />
         </ItemInfoSectionButtons>
       </ItemInfo>
     </CardContainer>
