@@ -5,15 +5,20 @@ const BaseWrapper = styled.div`
 `
 
 export const Container = styled.div`
-  gap: 2rem;
-  padding: 2.5rem 0;
-
   h2 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 1.125rem;
     line-height: 130%;
     font-weight: 700;
     color: ${(props) => props.theme['base-subtitle']};
+  }
+
+  form {
+    width: 100%;
+
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0;
   }
 `
 
