@@ -29,9 +29,24 @@ import {
   TotalOrderWrapper,
   ValuesAmountWrapper,
 } from './styles'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { NumericFormat } from 'react-number-format'
+import { useForm } from 'react-hook-form'
+
+const newOrderFormValidationSchema = zod.object({
+  zip: zod.string(),
+  streetName: zod.string(),
+  number: zod.number(),
+  complement: zod.string(),
+  neighborhood: zod.string(),
+  city: zod.string(),
+  stateUf: zod.string(),
+})
+
+type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
   const { coffees } = useContext(CoffeeOrderContext)
@@ -42,8 +57,27 @@ export function Checkout() {
 
   const taxaEntrega = 3.5
 
+  const newOrderForm = useForm<NewOrderFormData>({
+    resolver: zodResolver(newOrderFormValidationSchema),
+    defaultValues: {
+      zip: '',
+      streetName: '',
+      number: 0,
+      complement: '',
+      neighborhood: '',
+      city: '',
+      stateUf: '',
+    },
+  })
+
+  const { handleSubmit } = newOrderForm
+
   function handleSelectedPayment(paymentMethod: string) {
     setSelectedPayment(paymentMethod)
+  }
+
+  function handleCreateNewOrder(data: NewOrderFormData) {
+    console.log('order created', data)
   }
 
   useEffect(() => {
@@ -66,7 +100,7 @@ export function Checkout() {
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
         <SignUpFormContainer>
           <h2>Complete seu pedido</h2>
           <AddressWrapper>
