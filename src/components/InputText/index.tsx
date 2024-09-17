@@ -1,35 +1,21 @@
-import { useState } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { InputContainer, InputField, InputPlaceholder } from './styles'
 
-interface InputTextProps {
+interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
   isOptional?: boolean
-  placeholder?: string
+  isOptionalFilled?: boolean
 }
 
 export function InputText({
   isOptional = false,
-  placeholder = '',
+  isOptionalFilled = false,
+  ...props
 }: InputTextProps) {
-  const [value, setValue] = useState('')
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value)
-  }
-
   return (
     <InputContainer>
-      <InputField
-        type="text"
-        value={value}
-        onChange={handleChange}
-        placeholder={placeholder}
-      />
-      {!value && (
-        <>
-          <InputPlaceholder position="end">
-            {isOptional ? `Opcional` : ''}
-          </InputPlaceholder>
-        </>
+      <InputField {...props} />
+      {!isOptionalFilled && isOptional && (
+        <InputPlaceholder position="end">Opcional</InputPlaceholder>
       )}
     </InputContainer>
   )
