@@ -7,34 +7,15 @@ import {
   PrimaryButton,
   ShopCartCard,
 } from '../../components'
-import {
-  AddressInfo,
-  AddressTitle,
-  AddressWrapper,
-  CoffeeList,
-  CoffeeListWrapper,
-  Container,
-  FirstLine,
-  FourthLine,
-  GradBottom,
-  GradTop,
-  PaymentInfoBtns,
-  PaymentTitle,
-  PaymentWrapper,
-  SecondLine,
-  Separator,
-  SignUpFormContainer,
-  ThirdLine,
-  TotalOrderContainer,
-  TotalOrderWrapper,
-  ValuesAmountWrapper,
-} from './styles'
+import * as S from './styles'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { CoffeeOrderContext } from '../../contexts/CoffeeOrderContext'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { NumericFormat } from 'react-number-format'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { IAddress, IOrder } from '../../infra/interfaces/order'
 
 const newOrderFormValidationSchema = zod.object({
   zip: zod.string(),
@@ -49,11 +30,11 @@ const newOrderFormValidationSchema = zod.object({
 type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
-  const { coffees } = useContext(CoffeeOrderContext)
-
+  const { coffees, updateOrder } = useContext(CoffeeOrderContext)
   const [selectedPayment, setSelectedPayment] = useState('')
   const [totalItemsPrice, setTotalItemsPrice] = useState(0)
   const [totalOrderPrice, setTotalOrderPrice] = useState(0)
+  const navigate = useNavigate()
 
   const taxaEntrega = 3.5
 
@@ -73,7 +54,6 @@ export function Checkout() {
   const { control, handleSubmit, reset, watch } = newOrderForm
 
   const formValues = watch()
-  console.log(formValues)
 
   const isOptionalFilled = !!formValues.complement
 
@@ -81,8 +61,26 @@ export function Checkout() {
     setSelectedPayment(paymentMethod)
   }
 
-  function handleCreateNewOrder(data: NewOrderFormData) {
-    console.log('order created', data)
+  function handleCreateNewOrder(data: NewOrderFormData | IAddress) {
+    if (!selectedPayment) {
+      alert('Selecione a forma de pagamento')
+      return
+    }
+
+    if (coffees.length <= 0) {
+      alert('Este pedido está vazio, adicione cafés ao pedido')
+      return
+    }
+
+    const newOrder: IOrder = {
+      coffees,
+      address: data,
+      paymentMethod: selectedPayment,
+      total: String(totalOrderPrice),
+    }
+
+    updateOrder(newOrder)
+    navigate('/order-confirmed')
     reset()
   }
 
@@ -105,7 +103,7 @@ export function Checkout() {
   }, [coffees])
 
   return (
-    <Container>
+    <S.Container>
       <form
         onSubmit={handleSubmit(handleCreateNewOrder, (errors) => {
           console.log('AddressFormErrors', errors)
@@ -113,19 +111,19 @@ export function Checkout() {
         action=""
       >
         <FormProvider {...newOrderForm}>
-          <SignUpFormContainer>
+          <S.SignUpFormContainer>
             <h2>Complete seu pedido</h2>
-            <AddressWrapper>
-              <AddressTitle>
+            <S.AddressWrapper>
+              <S.AddressTitle>
                 <div>
                   <MapPinLine size={22} />
                   <p>Endereço de Entrega</p>
                 </div>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
-              </AddressTitle>
+              </S.AddressTitle>
 
-              <AddressInfo>
-                <FirstLine>
+              <S.AddressInfo>
+                <S.FirstLine>
                   <Controller
                     name="zip"
                     control={control}
@@ -133,8 +131,8 @@ export function Checkout() {
                       <InputText id="zip" placeholder="CEP" {...field} />
                     )}
                   />
-                </FirstLine>
-                <SecondLine>
+                </S.FirstLine>
+                <S.SecondLine>
                   <Controller
                     name="streetName"
                     control={control}
@@ -142,8 +140,8 @@ export function Checkout() {
                       <InputText id="streetName" placeholder="Rua" {...field} />
                     )}
                   />
-                </SecondLine>
-                <ThirdLine>
+                </S.SecondLine>
+                <S.ThirdLine>
                   <Controller
                     name="number"
                     control={control}
@@ -174,8 +172,8 @@ export function Checkout() {
                       />
                     )}
                   />
-                </ThirdLine>
-                <FourthLine>
+                </S.ThirdLine>
+                <S.FourthLine>
                   <Controller
                     name="neighborhood"
                     control={control}
@@ -201,12 +199,12 @@ export function Checkout() {
                       <InputText id="stateUf" placeholder="UF" {...field} />
                     )}
                   />
-                </FourthLine>
-              </AddressInfo>
-            </AddressWrapper>
+                </S.FourthLine>
+              </S.AddressInfo>
+            </S.AddressWrapper>
 
-            <PaymentWrapper>
-              <PaymentTitle>
+            <S.PaymentWrapper>
+              <S.PaymentTitle>
                 <div>
                   <CurrencyDollar size={22} />
                   <p>Pagamento</p>
@@ -215,9 +213,9 @@ export function Checkout() {
                   O pagamento é feito na entrega. Escolha a forma que deseja
                   pagar
                 </p>
-              </PaymentTitle>
+              </S.PaymentTitle>
 
-              <PaymentInfoBtns>
+              <S.PaymentInfoBtns>
                 {Object.keys(PaymentMethods).map((method) => (
                   <OrderPayMethodBtn
                     key={method}
@@ -226,16 +224,16 @@ export function Checkout() {
                     isSelected={selectedPayment === method}
                   />
                 ))}
-              </PaymentInfoBtns>
-            </PaymentWrapper>
-          </SignUpFormContainer>
+              </S.PaymentInfoBtns>
+            </S.PaymentWrapper>
+          </S.SignUpFormContainer>
         </FormProvider>
 
-        <TotalOrderContainer>
+        <S.TotalOrderContainer>
           <h2>Cafés selecionados</h2>
-          <TotalOrderWrapper>
-            <CoffeeListWrapper>
-              <CoffeeList>
+          <S.TotalOrderWrapper>
+            <S.CoffeeListWrapper>
+              <S.CoffeeList>
                 {coffees.length > 0 ? (
                   coffees.map((coffee) => {
                     const coffeeIndex = coffees.indexOf(coffee)
@@ -244,7 +242,7 @@ export function Checkout() {
                       return (
                         <>
                           <ShopCartCard key={coffee.id} coffee={coffee} />
-                          <Separator />
+                          <S.Separator />
                         </>
                       )
                     } else {
@@ -254,19 +252,19 @@ export function Checkout() {
                 ) : (
                   <p>Nenhum Item</p>
                 )}
-              </CoffeeList>
+              </S.CoffeeList>
 
               {coffees.length > 0 && (
                 <>
-                  <GradTop />
-                  <GradBottom />
+                  <S.GradTop />
+                  <S.GradBottom />
                 </>
               )}
-            </CoffeeListWrapper>
+            </S.CoffeeListWrapper>
 
-            <Separator />
+            <S.Separator />
 
-            <ValuesAmountWrapper>
+            <S.ValuesAmountWrapper>
               <div>
                 <p>Total de itens</p>
                 <p>
@@ -303,11 +301,11 @@ export function Checkout() {
                   />
                 </p>
               </div>
-            </ValuesAmountWrapper>
+            </S.ValuesAmountWrapper>
             <PrimaryButton type="submit" text="CONFIRMAR PEDIDO" />
-          </TotalOrderWrapper>
-        </TotalOrderContainer>
+          </S.TotalOrderWrapper>
+        </S.TotalOrderContainer>
       </form>
-    </Container>
+    </S.Container>
   )
 }
