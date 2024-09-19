@@ -38,7 +38,7 @@ export function OrderPayMethodBtn({
   const methodDetails: PaymentMethodDetails = PaymentMethods[method]
 
   return (
-    <OrderPayMethodButton {...props} isSelected={isSelected}>
+    <OrderPayMethodButton {...props} isSelected={isSelected} type="button">
       {methodDetails.icon}
       {methodDetails.label}
     </OrderPayMethodButton>
