@@ -53,6 +53,14 @@ export function orderReducer(state: IOrder, action: any) {
         }
       })
 
+    case ActionTypes.UPDATE_ORDER:
+      return produce(state, (draft) => {
+        draft.address = action.payload.infoToUpdate.address
+        draft.coffees = action.payload.infoToUpdate.coffees
+        draft.paymentMethod = action.payload.infoToUpdate.paymentMethod
+        draft.total = action.payload.infoToUpdate.total
+      })
+
     default:
       return state
   }

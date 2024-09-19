@@ -1,9 +1,11 @@
 import { ICoffee } from '../../infra/interfaces/coffee'
+import { IOrder } from '../../infra/interfaces/order'
 
 export enum ActionTypes {
   ADD_COFFEE_TO_ORDER = 'ADD_COFFEE_TO_ORDER',
   REMOVE_COFFEE_FROM_ORDER = 'REMOVE_COFFEE_FROM_ORDER',
   UPDATE_COFFEE_ORDER_QUANTITY = 'UPDATE_COFFEE_ORDER_QUANTITY',
+  UPDATE_ORDER = 'UPDATE_ORDER',
 }
 
 export function addCoffeeToOrderAction(coffee: ICoffee) {
@@ -27,5 +29,12 @@ export function updateCoffeeQuantityAction(coffee: ICoffee, quantity: number) {
       coffee,
       quantity,
     },
+  }
+}
+
+export function updateOrderAction(infoToUpdate: IOrder) {
+  return {
+    type: ActionTypes.UPDATE_ORDER,
+    payload: { infoToUpdate },
   }
 }

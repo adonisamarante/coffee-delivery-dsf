@@ -5,13 +5,17 @@ import {
   addCoffeeToOrderAction,
   updateCoffeeQuantityAction,
   removeCoffeeFromOrderAction,
+  updateOrderAction,
 } from '../reducers/order/actions'
+import { IOrder } from '../infra/interfaces/order'
 
 interface ICoffeeOrderContextType {
   coffees: ICoffee[]
+  orderState: IOrder
   addCoffeeToOrder: (coffee: ICoffee) => void
   updateCoffeeOrderQuantity: (coffee: ICoffee, quantity: number) => void
   removeCoffeeFromOrder: (coffee: ICoffee) => void
+  updateOrder: (order: IOrder) => void
 }
 
 export const CoffeeOrderContext = createContext({} as ICoffeeOrderContextType)
@@ -23,25 +27,19 @@ interface ICoffeeOrderContextProviderProps {
 export function CoffeeOrderContextProvider({
   children,
 }: ICoffeeOrderContextProviderProps) {
-  const [orderState, dispatch] = useReducer(
-    orderReducer,
-    {
-      coffees: [],
-      paymentMethod: '',
-      total: '',
-      address: {
-        zip: '',
-        streetName: '',
-        number: 0,
-        neighborhood: '',
-        city: '',
-        stateUf: '',
-      },
+  const [orderState, dispatch] = useReducer(orderReducer, {
+    coffees: [],
+    paymentMethod: '',
+    total: '',
+    address: {
+      zip: '',
+      streetName: '',
+      number: 0,
+      neighborhood: '',
+      city: '',
+      stateUf: '',
     },
-    // (initialState) => {
-    //   return initialState
-    // },
-  )
+  })
 
   const { coffees } = orderState
 
@@ -57,13 +55,19 @@ export function CoffeeOrderContextProvider({
     dispatch(removeCoffeeFromOrderAction(coffee))
   }
 
+  function updateOrder(order: IOrder) {
+    dispatch(updateOrderAction(order))
+  }
+
   return (
     <CoffeeOrderContext.Provider
       value={{
         coffees,
+        orderState,
         addCoffeeToOrder,
         updateCoffeeOrderQuantity,
         removeCoffeeFromOrder,
+        updateOrder,
       }}
     >
       {children}
