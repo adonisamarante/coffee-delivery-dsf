@@ -14,13 +14,21 @@ export function InputNumber({
 }: InputNumberProps) {
   return (
     <InputNumberContainer>
-      <PlusMinusButton disabled={quantity <= 0} onClick={decreaseQuantity}>
+      <PlusMinusButton
+        type="button"
+        disabled={quantity <= 0}
+        onClick={decreaseQuantity}
+      >
         <Minus className="plus-minus-button" />
       </PlusMinusButton>
 
       <span>{quantity}</span>
 
-      <PlusMinusButton disabled={quantity >= 99} onClick={addQuantity}>
+      <PlusMinusButton
+        type="button"
+        disabled={quantity >= 99}
+        onClick={addQuantity}
+      >
         <Plus className="plus-minus-button" />
       </PlusMinusButton>
     </InputNumberContainer>
