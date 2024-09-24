@@ -24,6 +24,7 @@ export const OrderPayMethodButton = styled.button<OrderPayMethodBtnProps>`
   color: ${(props) => props.theme['base-text']};
   font-size: 0.75rem;
   line-height: 160%;
+  text-transform: uppercase;
 
   .button-icon {
     color: ${(props) => props.theme.purple};

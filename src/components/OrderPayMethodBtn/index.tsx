@@ -2,7 +2,7 @@ import { CreditCard, Bank, Money } from 'phosphor-react'
 import { OrderPayMethodButton } from './styles'
 import { ButtonHTMLAttributes } from 'react'
 
-interface PaymentMethodDetails {
+export interface PaymentMethodDetails {
   icon: JSX.Element
   label: string
 }
@@ -10,15 +10,15 @@ interface PaymentMethodDetails {
 export const PaymentMethods = {
   CreditCard: {
     icon: <CreditCard className="button-icon" />,
-    label: 'CARTÃO DE CRÉDITO',
+    label: 'Cartão de Crédito',
   },
   DebitCard: {
     icon: <Bank className="button-icon" />,
-    label: 'CARTÃO DE DÉBITO',
+    label: 'Cartão de Débito',
   },
   Cash: {
     icon: <Money className="button-icon" />,
-    label: 'DINHEIRO',
+    label: 'Dinheiro',
   },
 }
 
