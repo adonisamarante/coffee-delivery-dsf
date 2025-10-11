@@ -1,9 +1,16 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
-  padding: 2rem 0;
+  padding: 2rem 10rem;
+  background-color: ${(props) => props.theme['background-color']}F2;
+  box-shadow: 0px 2px 28px ${(props) => props.theme['background-color']};
 
   justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
   img {
     &:hover {
