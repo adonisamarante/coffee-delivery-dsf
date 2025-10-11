@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
 
   padding: 5.75rem 0;
+  margin-top: 6.5rem;
 `
 
 export const TitleContainer = styled.div`
