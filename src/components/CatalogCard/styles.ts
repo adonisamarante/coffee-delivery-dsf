@@ -43,7 +43,7 @@ export const CoffeeTag = styled.div`
   }
 `
 
-export const CoffeeDescritpion = styled.div`
+export const CoffeeDescription = styled.div`
   width: 13rem;
   margin-top: 1rem;
   text-align: center;

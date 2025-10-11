@@ -4,7 +4,7 @@ import { ICoffee } from '../../infra/interfaces/coffee'
 import {
   CardContainer,
   CardFooter,
-  CoffeeDescritpion,
+  CoffeeDescription,
   CoffeeTag,
   TagsWrapper,
 } from './styles'
@@ -55,10 +55,10 @@ export function CatalogCard({ coffee }: CatalogCardProps) {
         })}
       </TagsWrapper>
 
-      <CoffeeDescritpion>
+      <CoffeeDescription>
         <span>{coffee.name}</span>
         <span>{coffee.description}</span>
-      </CoffeeDescritpion>
+      </CoffeeDescription>
 
       <CardFooter>
         <div>
